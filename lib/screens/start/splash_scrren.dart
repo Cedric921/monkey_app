@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'start_page.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -8,16 +10,18 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool hasStarted = false;
+  bool hasStared = false;
   @override
   void initState() {
+    init();
+    // TODO: implement initState
     super.initState();
   }
 
   init() {
     Future.delayed(const Duration(seconds: 1), () {
       setState(() {
-        hasStarted = true; 
+        hasStared = true;
       });
     });
   }
@@ -25,92 +29,112 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      body: Stack(children: [
-        background(),
-        Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-            child: Column(
-              children: [appName(), slogan()],
+      child: Scaffold(
+        body: Stack(
+          children: [
+            backGround(),
+            Center(
+              child: SingleChildScrollView(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 150,
+                      width: 150,
+                    ),
+                    appName(),
+                    slogant(),
+                  ],
+                ),
+              ),
             ),
-          ),
+            AnimatedPositioned(
+              duration: const Duration(seconds: 3),
+              onEnd: () {
+                Navigator.pushNamed(context, StartPage.routeName);
+              },
+              curve: Curves.bounceInOut,
+              top: hasStared
+                  ? MediaQuery.of(context).size.height / 2 - 150
+                  : -200,
+              left: MediaQuery.of(context).size.width / 2 - 75,
+              child: icon(),
+            ),
+          ],
         ),
-        AnimatedPositioned(
-          duration: const Duration(seconds: 3),
-          curve: Curves.bounceInOut,
-          top: hasStarted ?
-            MediaQuery.of(context).size.width / 2 - 150 : -200,
-          left: MediaQuery.of(context).size.width / 2 - 75,
-          child: icon(),
-        )
-      ]),
-    ));
+      ),
+    );
   }
 
-  Widget background() {
+  Widget backGround() {
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/meal.jpg'),
-            fit: BoxFit.cover)
-          ),
+        image: DecorationImage(
+          image: AssetImage("assets/images/meal.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          color: Colors.black.withOpacity(.7)
-        ),
+        color: Colors.black.withOpacity(.7),
       ),
     );
   }
 
-  Widget slogan() {
+  Widget slogant() {
     return const Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.only(top: 10),
       child: Text(
-        "Debuter otre journne en consommant le Meal ",
+        "Debutez votre journnée en consommation un produit de Meal Monkey",
         textAlign: TextAlign.center,
-        style: TextStyle(color: Colors.white70),
+        style: TextStyle(color: Colors.white),
       ),
     );
   }
 
-  //here our app name
-  Widget appName() {
-    return Text.rich(TextSpan(
+  // here is ours app name
+  appName() {
+    return Text.rich(
+      TextSpan(
         text: "Meal",
         style: TextStyle(
-            fontSize: 20,
-            color: Theme.of(context).primaryColor,
-            fontWeight: FontWeight.bold),
+          fontSize: 24,
+          color: Theme.of(context).primaryColor,
+          fontWeight: FontWeight.bold,
+        ),
         children: const <TextSpan>[
           TextSpan(
             text: "Monkey",
             style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold),
-          )
-        ]));
+              fontSize: 24,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
   }
-//here is our app name
 
-//here we create our splash image
+// here we create ours slpash images
   Widget icon() {
     return Container(
-      margin: const EdgeInsets.only(bottom: 15),
-      height: 180,
-      width: 180,
+      margin: const EdgeInsets.only(bottom: 35),
+      height: 150,
+      width: 150,
       decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-              image: AssetImage(
-                'assets/images/monkey.jpg',
-              ),
-              fit: BoxFit.cover)),
+        shape: BoxShape.circle,
+        image: DecorationImage(
+          image: AssetImage(
+            'assets/images/monkey.jpg',
+          ),
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }
