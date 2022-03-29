@@ -35,7 +35,9 @@ class _StartPageState extends State<StartPage> {
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20)
               ),
-              
+              boxShadow: <BoxShadow>[
+
+              ],
               image: DecorationImage(
                 image: AssetImage('assets/images/meal.jpg'),
                 fit: BoxFit.cover
@@ -65,16 +67,28 @@ class _StartPageState extends State<StartPage> {
 
   Widget icon() {
     return Container(
-      margin: const EdgeInsets.only(bottom: 25),
-      height: 150,
-      width: 150,
       decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        image: DecorationImage(
-          image: AssetImage(
-            'assets/images/monkey.jpg',
+        color: Colors.white,
+        shape: BoxShape.circle
+      ),
+      child: Container(
+        margin: const EdgeInsets.all(10),
+        decoration: const BoxDecoration(
+          
+        ),
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 25),
+          height: 100,
+          width: 100,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              image: AssetImage(
+                'assets/images/monkey.jpg',
+              ),
+              fit: BoxFit.cover,
+            ),
           ),
-          fit: BoxFit.cover,
         ),
       ),
     );
