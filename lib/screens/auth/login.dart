@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
+  static String routeName = "login";
   const Login({Key? key}) : super(key: key);
 
   @override
@@ -42,7 +43,7 @@ class _LoginState extends State<Login> {
 
   Widget subtitle(String subtitle) {
     return  Padding(
-      padding:  EdgeInsets.only(bottom: 15),
+      padding:  const EdgeInsets.only(bottom: 15),
       child: Text(
         subtitle,
         style: const TextStyle(
@@ -52,9 +53,9 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget textField({
-    String 
-  }){
-    return
+  Widget textField(){
+    return const Padding(
+      padding: EdgeInsets.only(bottom: 10)
+    );
   }
 }

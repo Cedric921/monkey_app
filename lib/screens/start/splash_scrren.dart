@@ -8,20 +8,18 @@ class SplashScreen extends StatefulWidget {
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
-
 class _SplashScreenState extends State<SplashScreen> {
-  bool hasStared = false;
+  bool hasStarted = false;
   @override
   void initState() {
     init();
-    // TODO: implement initState
     super.initState();
   }
 
   init() {
     Future.delayed(const Duration(seconds: 1), () {
       setState(() {
-        hasStared = true;
+        hasStarted = true;
       });
     });
   }
@@ -50,22 +48,22 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             AnimatedPositioned(
-              duration: const Duration(seconds: 3),
-              onEnd: () {
-                Navigator.pushNamed(context, StartPage.routeName);
-              },
-              curve: Curves.bounceInOut,
-              top: hasStared
-                  ? MediaQuery.of(context).size.height / 2 - 150
-                  : -200,
-              left: MediaQuery.of(context).size.width / 2 - 75,
-              child: icon(),
-            ),
+                duration: const Duration(seconds: 3),
+                onEnd: () {
+                  Navigator.pushReplacementNamed(context, StartPage.routeName);
+                },
+                curve: Curves.bounceInOut,
+                top: hasStarted
+                    ? MediaQuery.of(context).size.height / 2 - 150
+                    : -200,
+                left: MediaQuery.of(context).size.width / 2 - 75,
+                child: icon()),
           ],
         ),
       ),
     );
   }
+//here is our bg
 
   Widget backGround() {
     return Container(
@@ -73,34 +71,40 @@ class _SplashScreenState extends State<SplashScreen> {
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/meal.jpg"),
+          image: AssetImage('assets/images/meal.jpg'),
           fit: BoxFit.cover,
         ),
       ),
       child: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        color: Colors.black.withOpacity(.7),
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(.7),
+        ),
       ),
     );
   }
+
+//here is our slogant
 
   Widget slogant() {
     return const Padding(
       padding: EdgeInsets.only(top: 10),
       child: Text(
-        "Debutez votre journnée en consommation un produit de Meal Monkey",
+        "Débutez votre journée en consomant un produit de Meal monkey",
         textAlign: TextAlign.center,
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(
+          color: Colors.white70,
+        ),
       ),
     );
   }
 
-  // here is ours app name
-  appName() {
+//here is our app name
+  Widget appName() {
     return Text.rich(
       TextSpan(
-        text: "Meal",
+        text: "Meal ",
         style: TextStyle(
           fontSize: 24,
           color: Theme.of(context).primaryColor,
@@ -120,17 +124,17 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-// here we create ours slpash images
+// here we create our splash's image
   Widget icon() {
     return Container(
-      margin: const EdgeInsets.only(bottom: 35),
+      margin: const EdgeInsets.only(bottom: 25),
       height: 150,
       width: 150,
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
           image: AssetImage(
-            'assets/images/monkey.jpg',
+            'assets/icons/icon.png',
           ),
           fit: BoxFit.cover,
         ),
