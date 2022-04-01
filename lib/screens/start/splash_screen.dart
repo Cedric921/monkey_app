@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'start_page.dart';
 
 class SplashScreen extends StatefulWidget {
+  static String routeName = "/splash_screen";
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -71,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen> {
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/meal.jpg'),
+          image: AssetImage("assets/images/meal.jpg"),
           fit: BoxFit.cover,
         ),
       ),
@@ -133,9 +134,7 @@ class _SplashScreenState extends State<SplashScreen> {
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
-          image: AssetImage(
-            'assets/icons/icon.png',
-          ),
+          image: AssetImage("assets/icons/monkey.jpg"),
           fit: BoxFit.cover,
         ),
       ),
